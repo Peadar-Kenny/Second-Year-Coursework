@@ -19,6 +19,7 @@ main(int argc, char *argv[]) {
 
     string line;
     int nrules = 0;
+    int count=0;
     vector<string> rule;
     vector<vector<string>> the_rules;
     size_t i, start,len; // len is number of characters in a category
@@ -56,22 +57,23 @@ main(int argc, char *argv[]) {
     cout << "number of rules was " << nrules << endl;
     while(!finished){
         int n;
-        
+        count = 0;
         cout << "please input the number of characters you wish to see in the daughter rule \n";
         cin >> n;
         for(int i = 0; i<the_rules.size(); i++){
             for(int j = 0; j<the_rules[i].size(); j++){
-                for(int k = 0; k<the_rules[i][j].size(); k++){
-                    if(the_rules[i][j][k]==','|| the_rules[i][j][k]=='['){
-                        the_rules[i][j] = line;
-                        if(line.size() == n){
-                            cout << line;
+                if(the_rules[i][j] == "-->"){
+                    count = the_rules[i].size()-j;
+                    if (count == n){
+                        for(int k =0;k<the_rules[i].size(); k++){
+                            cout << the_rules[i][k]; 
+                        }
                         }
                     }
                 }
             }
 
-        }
+        
     }
     
 
