@@ -83,9 +83,8 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public boolean isEmpty()
     {
-      for(int i = 0; i>)
-      // TODO
-      return true;
+      if(head ==null && tail == null)return true;
+      else return false; 
     }
 
     /**
@@ -106,7 +105,29 @@ class DoublyLinkedList<T extends Comparable<T>>
     public void insertBefore( int pos, T data ) 
     {
       
-      //TODO
+      if(isEmpty()){
+		DLLNode node = new DLLNode(data, null, null);
+		head = node;
+		tail = node;
+      }else if(pos <=0){
+		DLLNode node = new DLLNode(data, null, head);
+		head.prev = node;
+		head = node;
+      }else{
+		int count =0;
+        for (DLLNode iter = head; iter != null; iter = iter.next){
+        	if(count == pos){
+          		DLLNode node = new DLLNode(data, iter.prev,iter);
+          		iter.prev.next = node;
+          		iter.prev = node;
+          		return;
+        	}
+        count++;
+      }
+	  DLLNode node = new DLLNode(data, tail, null);
+	  tail.next = node;
+	  tail = node;
+      }
       return;
     }
 
@@ -123,6 +144,13 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public T get(int pos) 
     {
+      int count = 0;
+      for (DLLNode iter = head; iter != null; iter = iter.next){
+        if(count == pos){
+          return iter.data;
+        }
+        count++;
+      }
       //TODO
       return null;
     }
@@ -141,6 +169,29 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public boolean deleteAt(int pos) 
     {
+		if(isEmpty()){
+			return false;
+		}
+      int count = 0;
+      for (DLLNode iter = head; iter != null; iter = iter.next){
+        if (count == pos){
+          if( iter == head){
+		 	 head = iter.next;
+		 	 head.prev = null;
+         	 return true;
+        }else if(iter == tail){
+			 tail = iter.prev;
+			 tail.next = null;
+			 return true;
+		}else {
+			 iter.prev.next = iter.next;
+          	 iter.next.prev = iter.prev;
+          }
+          
+          return true;
+        }
+        count++;
+      }
       //TODO
       return false;
     }
