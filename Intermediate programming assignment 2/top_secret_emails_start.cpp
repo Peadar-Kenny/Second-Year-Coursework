@@ -22,7 +22,7 @@ main() {
   while (f >> word){
     thefile.push_back(word);
   }
-  for (int i=0; i<thefile.size; i++){
+  for (int i=0; i<thefile.size(); i++){
     if(is_an_email(thefile[i])){
       emails.push_back(thefile[i]);
     }
@@ -31,7 +31,7 @@ main() {
     }
   }
   if(codeword){
-    for(int i = 0; i<emails.size){
+    for(int i = 0; i<emails.size();i++){
       cout << emails[i] << "\n";
     }
   }
@@ -76,9 +76,9 @@ main() {
 //  @blah    -> false
 //  blah@    -> false
 bool is_an_email(string s) {
-  for(int i = 0; i < s.size; i++){
+  for(int i = 0; i < s.size(); i++){
     char c = s[i]; 
-    if(c== '@' && i!=0 &&i!= s.size-1){
+    if(c== '@' && i!=0 &&i!= s.size()-1){
       return true;
     }
   }
