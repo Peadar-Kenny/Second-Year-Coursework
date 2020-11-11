@@ -178,9 +178,7 @@ class DoublyLinkedList<T extends Comparable<T>>
         if (count == pos){
           if(iter == tail && iter == head){
 		 	     head = null;
-           head.prev = null;
            tail = null;
-			     tail.next = null;
          	 return true;
         }else if(iter == tail){
 			 tail = iter.prev;
