@@ -240,7 +240,7 @@ class DoublyLinkedList<T extends Comparable<T>>
      * Then it should contain "A", "B", "C", "D" after it returns.
      * The relative order of elements in the resulting list should be the same as the starting list.
      *
-     * Worst-case asymptotic running time cost: TODO
+     * Worst-case asymptotic running time cost: theta n^2
      *
      * Justification:
      *  TODO
@@ -297,8 +297,12 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public T pop() 
     {
+      if(isEmpty()){
+        return null;
+      }
+      T data = get(0);
       deleteAt(0);
-      return null;
+      return data;
     }
 
     /*----------------------- QUEUE API
@@ -317,11 +321,7 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public void enqueue(T item) 
     {
-      int count = 0;
-      for (DLLNode iter = head; iter != null; iter = iter.next){
-        count++;
-      }
-      insertBefore(count, item);
+      insertBefore(0, item);
     }
 
      /**
@@ -333,11 +333,24 @@ class DoublyLinkedList<T extends Comparable<T>>
      * Justification:
      *  TODO
      */
-    public T dequeue() 
-    {
-      deleteAt(0);
-      return null;
-    }
+    
+    public T dequeue() {
+      if(isEmpty()) {
+          return null;
+      }
+      else {
+          T theData = tail.data;
+          if(head == tail) {
+              head = null;
+              tail = null;
+          }
+          else {
+              tail = tail.prev;
+              tail.next = null;
+          }
+          return theData;
+      }
+  }
  
 
     /**

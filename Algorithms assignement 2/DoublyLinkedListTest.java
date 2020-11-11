@@ -152,9 +152,9 @@ public class DoublyLinkedListTest
       testDLL.enqueue(2);
       testDLL.enqueue(3);
 
-      assertEquals("1,2,3", testDLL.toString());
+      assertEquals("3,2,1", testDLL.toString());
       testDLL.dequeue();
-      assertEquals("2,3", testDLL.toString());
+      assertEquals("3,2", testDLL.toString());
       testDLL.dequeue();
       assertEquals("3", testDLL.toString());
     }
