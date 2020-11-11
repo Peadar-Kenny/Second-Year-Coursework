@@ -176,15 +176,22 @@ class DoublyLinkedList<T extends Comparable<T>>
       int count = 0;
       for (DLLNode iter = head; iter != null; iter = iter.next){
         if (count == pos){
-          if( iter == head){
-		 	 head = iter.next;
-		 	 head.prev = null;
+          if(iter == tail && iter == head){
+		 	     head = null;
+           head.prev = null;
+           tail = null;
+			     tail.next = null;
          	 return true;
         }else if(iter == tail){
 			 tail = iter.prev;
 			 tail.next = null;
 			 return true;
-		}else {
+    }else if(( iter == head)){
+       head = iter.next;
+        head.prev = null;
+        return true;
+      }
+    else {
 			 iter.prev.next = iter.next;
           	 iter.next.prev = iter.prev;
           }
