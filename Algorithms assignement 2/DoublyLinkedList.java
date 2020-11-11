@@ -192,7 +192,7 @@ class DoublyLinkedList<T extends Comparable<T>>
         }
         count++;
       }
-      //TODO
+      
       return false;
     }
 
@@ -208,6 +208,22 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public void reverse()
     {
+      int upperCount=0;
+      T transfer;
+      for (DLLNode iter = head; iter != null; iter = iter.next){
+        upperCount++;
+      }
+      for(int count =0; count<upperCount; count++){
+        transfer = get(count);
+        insertBefore(count, get(upperCount));
+        deleteAt(count+1);
+        insertBefore(upperCount, transfer);
+        deleteAt(upperCount+1);
+        upperCount = upperCount-1;
+      }
+        
+      
+      
       //TODO
     }
 
@@ -225,6 +241,20 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
      public void makeUnique()
     {
+       int uniqueCount;
+       int count;
+  
+      for (DLLNode iter = head; iter != null; iter = iter.next){
+        uniqueCount=0;
+        count = 0;
+        for (DLLNode node = head; node != null; node = node.next){
+          if(iter.data == node.data){
+            uniqueCount++;
+            if(uniqueCount >1)deleteAt(count);
+          }
+          count++;
+        }
+      }
       //TODO
     }
 
@@ -245,7 +275,7 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public void push(T item) 
     {
-      //TODO
+      insertBefore(0, item);
     }
 
     /**
@@ -259,7 +289,7 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public T pop() 
     {
-      //TODO
+      deleteAt(0);
       return null;
     }
 
@@ -279,7 +309,11 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public void enqueue(T item) 
     {
-      //TODO
+      int count = 0;
+      for (DLLNode iter = head; iter != null; iter = iter.next){
+        count++;
+      }
+      insertBefore(count, item);
     }
 
      /**
@@ -293,7 +327,7 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public T dequeue() 
     {
-      //TODO
+      deleteAt(0);
       return null;
     }
  
