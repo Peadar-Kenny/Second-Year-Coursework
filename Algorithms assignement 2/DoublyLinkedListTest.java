@@ -67,6 +67,97 @@ public class DoublyLinkedListTest
 
     // TODO: add more tests here. Each line of code in DoublyLinkedList.java should
     // be executed at least once from at least one test.
+    @Test
+    public void testDeleteAt()
+    {
+      //tests a non-empty list
+      DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+      testDLL.insertBefore(0,1);
+      testDLL.insertBefore(1,2);
+      testDLL.insertBefore(2,3);
+      testDLL.insertBefore(3,4);
+      testDLL.insertBefore(4,5);
+        
+      testDLL.deleteAt(2);
+      assertEquals("1,2,4,5", testDLL.toString());
+      testDLL.deleteAt(0);
+      assertEquals("2,4,5", testDLL.toString());
+      testDLL.deleteAt(2);
+      assertEquals("2,4", testDLL.toString());
+      assertEquals(false, testDLL.deleteAt(3));
+
+      testDLL = new DoublyLinkedList<Integer>();
+      assertEquals(false, testDLL.deleteAt(0));
+
+    }
+    public void testIsEmpty()
+    {
+      DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+      assertEquals(true, testDLL.isEmpty());
+      testDLL.insertBefore(1,3);
+      assertEquals(false, testDLL.isEmpty());
+    }
+    
+    
+    @Test
+    public void testMakeUnique()
+    {
+      DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+      testDLL.insertBefore(0,1);
+      testDLL.insertBefore(1,2);
+      testDLL.insertBefore(2,3);
+      testDLL.insertBefore(3,2);
+      testDLL.insertBefore(4,5);
+
+      testDLL.makeUnique();
+
+      assertEquals("1,2,3,5", testDLL.toString());
+    }
+    @Test
+    public void testReverse()
+    {
+      DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+      testDLL.insertBefore(0,1);
+      testDLL.insertBefore(1,2);
+      testDLL.insertBefore(2,3);
+      testDLL.insertBefore(3,4);
+      testDLL.insertBefore(4,5);
+
+      testDLL.reverse();
+      
+      assertEquals("5,4,3,2,1", testDLL.toString());
+    }
+    	@Test
+     public void testPushPop()
+    {
+      DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+      testDLL.push(1);
+      testDLL.push(2);
+      testDLL.push(3);
+      
+      assertEquals("3,2,1", testDLL.toString());
+      testDLL.pop();
+      assertEquals("2,1", testDLL.toString());
+      testDLL.pop();
+      assertEquals("1", testDLL.toString());
+      
+    }
+
+    @Test
+    public void testEnqueueDequeue()
+    {
+      DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+
+      testDLL.enqueue(1);
+      testDLL.enqueue(2);
+      testDLL.enqueue(3);
+
+      assertEquals("1,2,3", testDLL.toString());
+      testDLL.dequeue();
+      assertEquals("2,3", testDLL.toString());
+      testDLL.dequeue();
+      assertEquals("3", testDLL.toString());
+    }
 
 }
 

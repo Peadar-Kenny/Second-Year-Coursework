@@ -244,20 +244,22 @@ class DoublyLinkedList<T extends Comparable<T>>
     {
        int uniqueCount;
        int count;
-  
-      for (DLLNode iter = head; iter != null; iter = iter.next){
-        uniqueCount=0;
-        count = 0;
-        for (DLLNode node = head; node != null; node = node.next){
-          if(iter.data == node.data){
-            uniqueCount++;
-            if(uniqueCount >1)deleteAt(count);
+       
+       if(!isEmpty()){
+        for (DLLNode iter = head; iter != null; iter = iter.next){
+          uniqueCount=0;
+          count = 0;
+          for (DLLNode node = head; node != null; node = node.next){
+            if(iter.data == node.data){
+              uniqueCount++;
+              if(uniqueCount >1)deleteAt(count);
           }
           count++;
         }
       }
       //TODO
     }
+  }
 
 
     /*----------------------- STACK API 
