@@ -144,6 +144,7 @@ class DoublyLinkedList<T extends Comparable<T>>
      */
     public T get(int pos) 
     {
+      if (isEmpty()) return null;
       int count = 0;
       for (DLLNode iter = head; iter != null; iter = iter.next){
         if(count == pos){
